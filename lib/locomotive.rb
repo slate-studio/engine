@@ -97,7 +97,7 @@ module Locomotive
     self.enable_heroku if self.heroku?
 
     # Bushido support
-    #self.enable_bushido if self.bushido?
+    self.enable_bushido if self.bushido?
   end
 
   def self.define_subdomain_and_domains_options
