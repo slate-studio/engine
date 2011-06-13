@@ -18,7 +18,7 @@ module Locomotive
         end
 
         def call(env)
-          =begin
+          if false
             status, headers, response = @app.call(env)
 
             content = ""
@@ -43,7 +43,7 @@ module Locomotive
             headers['content-length'] = bytesize(content).to_s
 
             [status, headers, [content]]
-          =end
+          end
         end
 
       end
