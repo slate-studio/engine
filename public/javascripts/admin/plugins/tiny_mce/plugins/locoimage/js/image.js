@@ -42,7 +42,7 @@ var ImageDialog = {
     $('#spinner').show();
   },
 
-  insert: function(url) {
+  insert: function(url, alt) {
     var ed = tinyMCEPopup.editor, f = document.forms[0], nl = f.elements, v, args = {}, el;
 
     tinyMCEPopup.restoreSelection();
@@ -50,7 +50,7 @@ var ImageDialog = {
     // Fixes crash in Safari
     if (tinymce.isWebKit) ed.getWin().focus();
 
-    tinymce.extend(args, { src : url });
+    tinymce.extend(args, { src : url,  alt: alt});
 
     el = ed.selection.getNode();
 
@@ -116,16 +116,48 @@ var ImageDialog = {
     asset.find('h4 a').attr('href', data.url)
       .html(data.name)
       .bind('click', function(e) {
-        self.insert(data.url);
+        self.insert(data.url, data.alt);
         e.stopPropagation(); e.preventDefault();
       });
 
     asset.find('.image .inside img')
       .attr('src', data.vignette_url)
+      .attr('alt', data.alt)
       .bind('click', function(e) {
-        self.insert(data.url);
+        self.insert(data.url, data.alt);
       });
+      
+    asset.find('.alt').each(function() {
+      var alt_hint    = "Click here to add title"
+      var dialog_hint = "Please type the new title"
+      
+      if (data.alt)
+        $(this).html(data.alt);
+      else 
+        $(this).addClass('no-alt-data').html(alt_hint);
 
+      $(this).click(function(event) {
+        var new_value = prompt(
+          dialog_hint,
+          $(this).html() == alt_hint ? "" : $(this).html()
+        );
+
+        if (new_value)
+          $(this).removeClass('no-alt-data').html(new_value);
+        if (new_value == "")
+          $(this).addClass('no-alt-data').html(alt_hint);
+            
+        if (new_value != null)
+            $.ajax({
+              type: 'PUT',
+              url: data.update_url  ,
+              data: {"alt": new_value},
+            });
+          
+        event.preventDefault();
+      });
+    });
+            
     asset.find('.actions a')
       .attr('href', data.destroy_url)
       .bind('click', function(e) {

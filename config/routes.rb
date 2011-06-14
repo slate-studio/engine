@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # admin interface for each website
   namespace 'admin' do
     root :to => 'sessions#new'
-
+    
     resources :pages do
       put :sort, :on => :member
       get :get_path, :on => :collection
@@ -56,7 +56,6 @@ Rails.application.routes.draw do
     # installation guide
     match '/installation' => 'installation#show', :defaults => { :step => 1 }, :as => :installation
     match '/installation/:step' => 'installation#show', :as => :installation_step
-
   end
 
   # sitemap

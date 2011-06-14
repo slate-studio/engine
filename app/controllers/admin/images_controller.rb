@@ -7,7 +7,7 @@ module Admin
     defaults :collection_name => 'assets', :instance_name => 'asset'
 
     respond_to :json, :only => [:index, :create, :destroy]
-
+    
     def index
       index! do |response|
         response.json do
@@ -30,6 +30,15 @@ module Admin
     rescue Exception => e
       render :json => { :status => 'error', :message => e.message }
     end
+    
+    def update
+      update! do |format|
+        format.json do
+          @asset.update_attributes(:alt => params[:alt])
+          render :json => {:status => 'success'}
+        end
+      end
+    end
 
     protected
 
@@ -47,7 +56,9 @@ module Admin
         :name         => truncate(image.name, :length => 15),
         :url          => image.source.url,
         :vignette_url => image.vignette_url,
-        :destroy_url  => admin_image_url(image, :json)
+        :destroy_url  => admin_image_url(image, :json),
+        :update_url   => admin_image_url(image, :json),
+        :alt          => image[:alt],
       }
     end
 
