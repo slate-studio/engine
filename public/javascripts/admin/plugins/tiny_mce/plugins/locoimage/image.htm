@@ -21,6 +21,16 @@
 
   <link href="/stylesheets/admin/assets.css" rel="stylesheet" type="text/css" />
   <link href="css/locoimage.css?3" rel="stylesheet" type="text/css" />
+  
+  <style type="text/css">
+    .asset {
+      text-align:center;
+    }
+    
+    .asset .no-alt-data {
+      color: grey;
+    }
+  </style>
 </head>
 <body id="locoimage" style="display: none">
 
@@ -36,16 +46,14 @@
   <form onsubmit="insertAction();return false;" action="#">
     <div id="images">
       <ul class="assets">
-        <li class="new-asset" style="text-align:center">
+        <li class="new-asset">
           <h4><a href="#">NoName</a></h4>
           <div class="image">
             <div class="inside">
               <img src="/images/admin/icons/filetype/medium/CSS.png">
             </div>
           </div>
-          <div class="alt">
-              <input type="text" style="width:110px; margin-top:7px; text-align:center"/>
-          </div>
+          <div class="alt"></div>
           <div class="actions">
             <a href="#" class="remove" data-confirm="{#locoimage_dlg.confirm}" data-method="delete" rel="nofollow">
               <img src="/images/admin/list/icons/cross.png">

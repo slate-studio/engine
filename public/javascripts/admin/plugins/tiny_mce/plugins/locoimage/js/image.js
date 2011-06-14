@@ -127,17 +127,37 @@ var ImageDialog = {
         self.insert(data.url, data.alt);
       });
       
-    asset.find('.alt input')
-      .attr('value', data.alt)
-      .bind('keypress', function(e) {
-        if (e.which == 13)
-          $.ajax({
-            type: 'PUT',
-            url: data.update_url  ,
-            data: {"alt": $(this).val()},
-          });
-      });
+    asset.find('.alt').each(function() {
+      var alt_hint    = "Click here to add title"
+      var dialog_hint = "Please type the new title"
       
+      if (data.alt)
+        $(this).html(data.alt);
+      else 
+        $(this).addClass('no-alt-data').html(alt_hint);
+
+      $(this).click(function(event) {
+        var new_value = prompt(
+          dialog_hint,
+          $(this).html() == alt_hint ? "" : $(this).html()
+        );
+
+        if (new_value)
+          $(this).removeClass('no-alt-data').html(new_value);
+        if (new_value == "")
+          $(this).addClass('no-alt-data').html(alt_hint);
+            
+        if (new_value != null)
+            $.ajax({
+              type: 'PUT',
+              url: data.update_url  ,
+              data: {"alt": new_value},
+            });
+          
+        event.preventDefault();
+      });
+    });
+            
     asset.find('.actions a')
       .attr('href', data.destroy_url)
       .bind('click', function(e) {
