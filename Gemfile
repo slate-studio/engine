@@ -12,7 +12,6 @@ gem 'devise', '= 1.1.3'
 gem 'mongoid', '~> 2.0.2'
 gem 'bson_ext', '~> 1.3.0'
 gem 'locomotive_mongoid_acts_as_tree', '0.1.5.7', :require => 'mongoid_acts_as_tree'
-# gem 'locomotive_mongoid_acts_as_tree', '0.1.5.7', :require => 'mongoid_acts_as_tree', :path => '../gems/acts_as_tree'
 gem 'will_paginate'
 
 gem 'haml', '3.0.25'
@@ -24,7 +23,6 @@ gem 'rmagick', '2.12.2'
 gem 'locomotive_carrierwave', '0.5.0.1.beta3', :require => 'carrierwave'
 
 gem 'custom_fields', '1.0.0.beta.15'
-# gem 'custom_fields', '1.0.0.beta.15', :path => '../gems/custom_fields'
 gem 'fog', '0.3.7'
 gem 'mimetype-fu'
 gem 'actionmailer-with-request', :require => 'actionmailer_with_request'
@@ -37,6 +35,10 @@ gem 'rubyzip'
 gem 'locomotive_jammit-s3', :require => 'jammit-s3'
 gem 'SystemTimer', :platforms => :ruby_18
 
+# Dynamically resizing images on the fly and caching
+gem 'dragonfly',  '~> 0.9.1'
+gem 'rack-cache', :require => 'rack/cache'
+
 # The rest of the dependencies are for use when in the locomotive dev environment
 
 group :development do
@@ -48,14 +50,14 @@ group :test, :development do
   gem 'ruby-debug', :platforms => :mri_18
   gem 'ruby-debug19', :platforms => :mri_19
 
-  gem 'bushido_stub', :git => 'git://github.com/did/bushido_stub.git'
-  # :path => '../gems/bushido_stub'
-  # gem 'bushido'
+#  gem 'bushido_stub', :git => 'git://github.com/did/bushido_stub.git'
+#  # :path => '../gems/bushido_stub'
+#  # gem 'bushido'
 end
 
-group :production do
-  gem 'bushido'
-end
+#group :production do
+#  gem 'bushido'
+#end
 
 group :test do
   gem 'autotest'
