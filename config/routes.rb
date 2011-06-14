@@ -12,8 +12,6 @@ Rails.application.routes.draw do
   namespace 'admin' do
     root :to => 'sessions#new'
     
-    match "update_alt" => 'images#update_alt'
-
     resources :pages do
       put :sort, :on => :member
       get :get_path, :on => :collection
