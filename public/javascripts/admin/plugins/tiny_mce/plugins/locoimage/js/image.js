@@ -42,7 +42,7 @@ var ImageDialog = {
     $('#spinner').show();
   },
 
-  insert: function(url) {
+  insert: function(url, alt) {
     var ed = tinyMCEPopup.editor, f = document.forms[0], nl = f.elements, v, args = {}, el;
 
     tinyMCEPopup.restoreSelection();
@@ -50,7 +50,7 @@ var ImageDialog = {
     // Fixes crash in Safari
     if (tinymce.isWebKit) ed.getWin().focus();
 
-    tinymce.extend(args, { src : url });
+    tinymce.extend(args, { src : url,  alt: alt});
 
     el = ed.selection.getNode();
 
@@ -116,29 +116,28 @@ var ImageDialog = {
     asset.find('h4 a').attr('href', data.url)
       .html(data.name)
       .bind('click', function(e) {
-        self.insert(data.url);
+        self.insert(data.url, data.alt);
         e.stopPropagation(); e.preventDefault();
       });
 
     asset.find('.image .inside img')
       .attr('src', data.vignette_url)
+      .attr('alt', data.alt)
       .bind('click', function(e) {
-        self.insert(data.url);
+        self.insert(data.url, data.alt);
       });
       
     asset.find('.alt input')
+      .attr('value', data.alt)
       .bind('keypress', function(e) {
-        if (e.which == 13) {
-          $.post(
-            "/admin/update_alt",
-            {
-              "alt": $(this).val(),
-              "id": asset.find(".id").html()
-            }
-          );
-        }
+        if (e.which == 13)
+          $.ajax({
+            type: 'PUT',
+            url: data.update_url  ,
+            data: {"alt": $(this).val()},
+          });
       });
-
+      
     asset.find('.actions a')
       .attr('href', data.destroy_url)
       .bind('click', function(e) {

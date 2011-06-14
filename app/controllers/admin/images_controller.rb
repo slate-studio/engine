@@ -31,14 +31,12 @@ module Admin
       render :json => { :status => 'error', :message => e.message }
     end
     
-    def update_alt
-      asset = begin_of_association_chain.assets.find(params[:id])
-      puts asset[:alt] = params[:alt]
-      render :text => "OK"
-    end
-    
     def update
-      update! do
+      update! do |format|
+        format.json do
+          @asset.update_attributes(:alt => params[:alt])
+          render :json => {:status => 'success'}
+        end
       end
     end
 
@@ -58,7 +56,9 @@ module Admin
         :name         => truncate(image.name, :length => 15),
         :url          => image.source.url,
         :vignette_url => image.vignette_url,
-        :destroy_url  => admin_image_url(image, :json)
+        :destroy_url  => admin_image_url(image, :json),
+        :update_url   => admin_image_url(image, :json),
+        :alt          => image.alt,
       }
     end
 
