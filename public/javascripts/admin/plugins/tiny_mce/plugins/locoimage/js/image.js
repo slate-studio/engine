@@ -125,6 +125,19 @@ var ImageDialog = {
       .bind('click', function(e) {
         self.insert(data.url);
       });
+      
+    asset.find('.alt input')
+      .bind('keypress', function(e) {
+        if (e.which == 13) {
+          $.post(
+            "/admin/update_alt",
+            {
+              "alt": $(this).val(),
+              "id": asset.find(".id").html()
+            }
+          );
+        }
+      });
 
     asset.find('.actions a')
       .attr('href', data.destroy_url)

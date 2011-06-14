@@ -7,7 +7,7 @@ module Admin
     defaults :collection_name => 'assets', :instance_name => 'asset'
 
     respond_to :json, :only => [:index, :create, :destroy]
-
+    
     def index
       index! do |response|
         response.json do
@@ -29,6 +29,17 @@ module Admin
       end
     rescue Exception => e
       render :json => { :status => 'error', :message => e.message }
+    end
+    
+    def update_alt
+      asset = begin_of_association_chain.assets.find(params[:id])
+      puts asset[:alt] = params[:alt]
+      render :text => "OK"
+    end
+    
+    def update
+      update! do
+      end
     end
 
     protected
