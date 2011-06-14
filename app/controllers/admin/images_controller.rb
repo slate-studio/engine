@@ -58,7 +58,7 @@ module Admin
         :vignette_url => image.vignette_url,
         :destroy_url  => admin_image_url(image, :json),
         :update_url   => admin_image_url(image, :json),
-        :alt          => image.alt,
+        :alt          => image[:alt],
       }
     end
 
