@@ -15,7 +15,7 @@ gem 'locomotive_mongoid_acts_as_tree', '0.1.5.7', :require => 'mongoid_acts_as_t
 # gem 'locomotive_mongoid_acts_as_tree', '0.1.5.7', :require => 'mongoid_acts_as_tree', :path => '../gems/acts_as_tree'
 gem 'will_paginate'
 
-gem 'haml', '3.0.25'
+gem 'haml', '3.1.2'
 gem 'locomotive_liquid', '2.2.2', :require => 'liquid'
 gem 'formtastic', '~> 1.2.3'
 gem 'inherited_resources', '~> 1.1.2'

@@ -123,7 +123,7 @@ GEM
     gherkin (2.1.5)
       trollop (~> 1.16.2)
     growl-glue (1.0.7)
-    haml (3.0.25)
+    haml (3.1.2)
     has_scope (0.5.0)
     heroku (1.19.1)
       activesupport (>= 2.1.0)
@@ -275,7 +275,7 @@ DEPENDENCIES
   fog (= 0.3.7)
   formtastic (~> 1.2.3)
   growl-glue
-  haml (= 3.0.25)
+  haml (= 3.1.2)
   heroku (= 1.19.1)
   httparty (>= 0.6.1)
   inherited_resources (~> 1.1.2)
