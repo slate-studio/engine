@@ -128,14 +128,14 @@ var ImageDialog = {
       });
       
     asset.find('.alt').each(function() {
-      var alt_hint    = "Click here to add title"
-      var dialog_hint = "Please type the new title"
+      var alt_hint    = "Add alt"
+      var dialog_hint = "Please type the new alt"
       
       if (data.alt)
         $(this).html(data.alt);
       else 
         $(this).addClass('no-alt-data').html(alt_hint);
-
+        
       $(this).click(function(event) {
         var new_value = prompt(
           dialog_hint,

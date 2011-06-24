@@ -38,6 +38,11 @@ ul.assets {
   height: 571px;
 }
 
+ul.assets li.asset {
+  height: 165px;
+  background: transparent url(../img/thumb.png) no-repeat 0 0;
+}
+
 ul.assets li.asset h4 a {
   top: 9px;
   font-size: 0.7em;
@@ -53,6 +58,31 @@ ul.assets li.asset div.actions {
 
 ul.assets li.new-asset {
   display: none;
+}
+
+ul.assets li.asset div.no-alt-data {
+    color: grey;
+}
+    
+ul.assets li.asset div.alt {
+  width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  
+  text-align: center;
+  
+  margin-top: 6px;
+  margin-left: auto;
+  margin-right: auto;
+        
+  outline: medium none;
+  padding: 2px 6px;
+}
+    
+ul.assets li.asset div.alt:hover {
+  background: url("/images/admin/form/pen.png") no-repeat scroll right 5px #FFFBE5;
+  border-bottom: 1px dotted #EFE4A5;
 }
 
 #upload-link {
