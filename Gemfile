@@ -25,7 +25,7 @@ gem 'locomotive_carrierwave', '0.5.0.1.beta3', :require => 'carrierwave'
 
 gem 'custom_fields', '1.0.0.beta.15'
 # gem 'custom_fields', '1.0.0.beta.15', :path => '../gems/custom_fields'
-gem 'fog', '0.3.7'
+gem 'fog', '0.11.0'
 gem 'mimetype-fu'
 gem 'actionmailer-with-request', :require => 'actionmailer_with_request'
 gem 'heroku', '1.19.1'
