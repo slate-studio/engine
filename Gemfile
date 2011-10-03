@@ -37,6 +37,7 @@ gem 'rubyzip'
 gem 'locomotive_jammit-s3', :require => 'jammit-s3'
 gem 'SystemTimer', :platforms => :ruby_18
 
+
 # The rest of the dependencies are for use when in the locomotive dev environment
 
 group :development do
@@ -61,10 +62,10 @@ group :test do
   gem 'autotest'
   gem 'ZenTest'
   gem 'growl-glue'
-  gem 'rspec-rails', '2.3.1'
+  #gem 'rspec-rails', '2.3.1'
   gem 'factory_girl_rails'
   gem 'pickle'
-  gem 'xpath',            :git => 'https://github.com/wunderbread/xpath.git'
+  #gem 'xpath',            :git => 'https://github.com/wunderbread/xpath.git'
   gem 'capybara'
 
   gem 'database_cleaner'
